@@ -1,0 +1,30 @@
+{
+  "name": "parcel-project-template",
+  "version": "1.1.0",
+  "description": "",
+  "main": "index.js",
+  "homepage": "https://katerynamuzhetska.github.io/goit-js-hw-12-countries",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html --public-url /goit-js-hw-12-countries/",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katerynamuzhetska/goit-js-hw-12-countries"
+  },
+  "keywords": [],
+  "author": "Kateryna Muzhetska <mujetskaya@yahoo.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katerynamuzhetska/goit-js-hw-12-countries/issues"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-handlebars-precompile": "^1.0.2",
+    "posthtml-include": "^1.7.1",
+    "sass": "^1.32.8"
+  }
+}
