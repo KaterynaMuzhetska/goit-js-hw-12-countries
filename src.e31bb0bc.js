@@ -131,9 +131,7 @@ function fetchCountries(searchQuery) {
   return fetch("".concat(BASE_URL, "/name/").concat(searchQuery)).then(function (response) {
     if (response.ok) return response.json();
     throw new Error('Error fetching data');
-  }).catch(function (error) {
-    console.log('This is error:', error);
-  });
+  }).catch(function (error) {});
 }
 },{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
@@ -2831,21 +2829,38 @@ var input = document.querySelector('input');
 input.addEventListener('input', debounce(searchCounntries, 500));
 
 function searchCounntries(e) {
-  (0, _fetchCountries.default)(e.target.value).then(function (countries) {
-    var countriesLength = countries.length;
+  var inputValue = e.target.value;
+  var countOfSpaces = checkSpaces(inputValue);
 
-    if (countriesLength === 1) {
-      cardContainer.innerHTML = (0, _countryTemplate.default)(countries[0]);
-      return;
-    } else if (countriesLength <= 10) {
-      cardContainer.innerHTML = (0, _countriesListTemplate.default)(countries);
-      return;
-    } else {
-      onFetchError();
+  if (inputValue != '') {
+    if (countOfSpaces == 0) {
+      (0, _fetchCountries.default)(inputValue).then(function (countries) {
+        var countriesLength = countries.length;
+
+        if (countriesLength === 1) {
+          cardContainer.innerHTML = (0, _countryTemplate.default)(countries[0]);
+          return;
+        } else if (countriesLength <= 10) {
+          cardContainer.innerHTML = (0, _countriesListTemplate.default)(countries);
+          return;
+        } else {
+          onFetchError();
+        }
+      }).catch(function (error) {});
     }
-  }).catch(function (error) {
-    console.log(error);
-  });
+  } else {
+    cardContainer.innerHTML = '';
+  }
+}
+
+function checkSpaces(inputValue) {
+  var countOfSpaces = 0;
+
+  for (var i = 0, len = inputValue.length; i < len; i++) {
+    countOfSpaces += inputValue.charAt(i) === " " ? 1 : 0;
+  }
+
+  return countOfSpaces;
 }
 
 function onFetchError() {
@@ -2883,7 +2898,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63395" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54914" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
