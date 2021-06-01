@@ -9,6 +9,6 @@ export default function fetchCountries(searchQuery) {
             throw new Error('Error fetching data');
         })
         .catch(error => {
-            console.log('This is error:', error)
+
         });
 }

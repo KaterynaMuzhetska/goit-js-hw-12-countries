@@ -12,7 +12,8 @@
   <form class="js-search-form search-form" action="">
     <div class="form-group">
       <label for="query" class="form-label">Country searcher</label>
-      <input name="query" id='query' class="form-input" type="text" placeholder="Введите название страны">
+      <input name="query" pattern="[\w]{1,15}" id='query' class="form-input" type="text"
+        placeholder="Введите название страны">
     </div>
   </form>
   <div class="js-card-container card"></div>
